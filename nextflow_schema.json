@@ -51,7 +51,7 @@
                     "type": "string",
                     "default": "tinc,mobster,viber,pyclone-vi,sparsesignatures,sigprofiler",
                     "description": "List of tools for running the pipeline.",
-                    "pattern": "^((tinc|mobster|viber|pyclone-vi|sparsesignatures|sigprofiler)?,?)*(?<!,)$"
+                    "pattern": "^((tinc|mobster|viber|pyclone-vi|conipher|sparsesignatures|sigprofiler)?,?)*(?<!,)$"
                 },
                 "filter": {
                     "type": "boolean",
@@ -287,6 +287,74 @@
                     "type": "integer",
                     "default": 1,
                     "description": "The minimum number of dimensions where we want to detect a Binomial component when applying a heuristic procedure to filter clusters after Variational Inference."
+                }
+            },
+            "fa_icon": "fas fa-briefcase"
+        },
+        "conipher": {
+            "title": "CONIPHER",
+            "type": "object",
+            "description": "CONIPHER mutation clustering and phylogenetic tree building.",
+            "default": "",
+            "properties": {
+                "conipher_min_cluster_size": {
+                    "type": "integer",
+                    "default": 5,
+                    "description": "Minimum number of mutations required for a CONIPHER cluster to be retained."
+                },
+                "conipher_clonal_cutoff": {
+                    "type": "number",
+                    "default": 0.9,
+                    "description": "Lower CCF threshold used to treat mutations as clonal when merging ubiquitous clusters."
+                },
+                "conipher_propclonal_threshold": {
+                    "type": "number",
+                    "default": 0.25,
+                    "description": "Minimum proportion of clonal mutations required to merge ubiquitous clusters."
+                },
+                "conipher_burn_in": {
+                    "type": "integer",
+                    "default": 1000,
+                    "description": "PyClone burn-in iterations used by CONIPHER clustering."
+                },
+                "conipher_seed": {
+                    "type": "integer",
+                    "default": 1024,
+                    "description": "Random seed for CONIPHER clustering."
+                },
+                "conipher_subclonal_copy_correction": {
+                    "type": "boolean",
+                    "default": true,
+                    "description": "Apply subclonal copy-number correction during CONIPHER clustering."
+                },
+                "conipher_clean_clusters": {
+                    "type": "boolean",
+                    "default": true,
+                    "description": "Clean and merge CONIPHER clusters after PyClone."
+                },
+                "conipher_prefix": {
+                    "type": "string",
+                    "description": "Case prefix that must be contained in CASE_ID. Defaults to the patient identifier."
+                },
+                "conipher_ccf_buffer": {
+                    "type": "number",
+                    "default": 10,
+                    "description": "CCF buffer used by CONIPHER tree building."
+                },
+                "conipher_pval_cutoff": {
+                    "type": "number",
+                    "default": 0.01,
+                    "description": "P-value cutoff used by CONIPHER tree building."
+                },
+                "conipher_min_ccf": {
+                    "type": "number",
+                    "default": 0.01,
+                    "description": "Minimum CCF for a cluster to be considered present in a sample."
+                },
+                "conipher_multi_trees": {
+                    "type": "boolean",
+                    "default": true,
+                    "description": "Enumerate alternative phylogenetic trees."
                 }
             },
             "fa_icon": "fas fa-briefcase"
@@ -578,6 +646,9 @@
         },
         {
             "$ref": "#/$defs/viber"
+        },
+        {
+            "$ref": "#/$defs/conipher"
         },
         {
             "$ref": "#/$defs/sparsesignature"

@@ -1,0 +1,67 @@
+name: "conipher_clustering"
+description: "CONIPHER mutation clustering with PyClone 0.13.1 and TRACERx-style CCF correction."
+keywords:
+  - CONIPHER
+  - clustering
+  - phylogenetics
+  - subclonal deconvolution
+tools:
+  - "conipher":
+      description: "CONIPHER mutation clustering and phylogenetic tree reconstruction."
+      homepage: "https://github.com/McGranahanLab/CONIPHER"
+      documentation: "https://github.com/McGranahanLab/CONIPHER"
+      doi: "10.1038/s41596-023-00913-9"
+      licence:
+        - "BSD-3-Clause"
+      identifier: ""
+input:
+  - - meta:
+        type: map
+        description: Groovy Map containing sample information
+    - input_tsv:
+        type: file
+        description: Unclustered CONIPHER input table
+        pattern: "*.tsv"
+        ontologies: []
+    - tumour_samples:
+        type: list
+        description: List of tumour sample identifiers for a specific patient
+output:
+  cluster_tsv:
+    - - meta:
+          type: map
+          description: Groovy Map containing sample information
+      - "*.SCoutput.CLEAN.tsv":
+          type: file
+          description: Clean clustered CONIPHER table used for tree building
+          pattern: "*.SCoutput.CLEAN.tsv"
+          ontologies: []
+  cluster_full:
+    - - meta:
+          type: map
+          description: Groovy Map containing sample information
+      - "*.SCoutput.FULL.tsv":
+          type: file
+          description: Full clustered CONIPHER table including dirty clusters
+          pattern: "*.SCoutput.FULL.tsv"
+          ontologies: []
+  cluster_dirty:
+    - - meta:
+          type: map
+          description: Groovy Map containing sample information
+      - "*.SCoutput.DIRTY.tsv":
+          type: file
+          description: Mutations removed during cluster cleaning
+          pattern: "*.SCoutput.DIRTY.tsv"
+          ontologies: []
+  versions:
+    - versions.yml:
+        type: file
+        description: File containing software versions
+        pattern: "versions.yml"
+        ontologies:
+          - edam: http://edamontology.org/format_3750
+authors:
+  - "@jaesvi"
+maintainers:
+  - "@jaesvi"

@@ -1,0 +1,52 @@
+name: "cnaqc2conipher"
+description: "Convert a joint mCNAqc RDS object into the long-format TSV required by CONIPHER clustering."
+keywords:
+  - CNAqc
+  - CONIPHER
+  - formatter
+  - subclonal deconvolution
+tools:
+  - "cnaqc":
+      description: "CNAqc quality control of allele-specific copy number calls."
+      homepage: "https://caravagnalab.github.io/CNAqc/"
+      documentation: "https://caravagnalab.github.io/CNAqc/"
+      doi: "10.1186/s13059-024-03170-5"
+      licence:
+        - "GPL-3.0-or-later"
+      identifier: ""
+input:
+  - - meta:
+        type: map
+        description: Groovy Map containing sample information
+    - rds_join:
+        type: file
+        description: RDS file containing the mCNAqc object with joint mutations and copy number segments
+        pattern: "*.rds"
+        ontologies: []
+    - tumour_samples:
+        type: list
+        description: List of tumour sample identifiers for a specific patient
+output:
+  tsv:
+    - - meta:
+          type: map
+          description: Groovy Map containing sample information
+      - "*_conipher_input.tsv":
+          type: file
+          description: CONIPHER clustering input table
+          pattern: "*_conipher_input.tsv"
+          ontologies: []
+      - tumour_samples:
+          type: list
+          description: List of tumour sample identifiers for a specific patient
+  versions:
+    - versions.yml:
+        type: file
+        description: File containing software versions
+        pattern: "versions.yml"
+        ontologies:
+          - edam: http://edamontology.org/format_3750
+authors:
+  - "@jaesvi"
+maintainers:
+  - "@jaesvi"

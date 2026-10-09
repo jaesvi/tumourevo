@@ -1,0 +1,15 @@
+input: /home/valleinclan/dev/pipelines/tumourevo/test-purple-pass01/samplesheet.csv
+outdir: /home/valleinclan/dev/pipelines/tumourevo/test-purple-pass01/results
+
+genome: GRCh38
+fasta: /data/REFERENCE_GENOME/GRCh38_masked_exclusions_alts_hlas.fasta
+
+download_cache_vep: false
+vep_cache: /home/valleinclan/dev/pipelines/tumourevo/data/vep_cache
+vep_cache_version: 115
+vep_genome: GRCh38
+vep_species: homo_sapiens
+
+tools: tinc,mobster,viber,pyclone-vi,sparsesignatures,sigprofiler
+download_sigprofiler_genome: false
+genome_installed_path: /home/valleinclan/dev/pipelines/tumourevo/data/sigprofiler

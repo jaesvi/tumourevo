@@ -64,6 +64,11 @@ The default directory structure is as follows:
 │       └── <patient>
 |   ├── pyclonevi
 │       └── <patient>
+|   ├── conipher
+│   │   ├── clustering
+│   │       └── <patient>
+│   │   └── treebuilding
+│   │       └── <patient>
 |   └── ctree
         └── <patient>,<sample>
 work/
@@ -335,6 +340,37 @@ The results of subclonal deconvolution step are collected in `{outdir}/subclonal
   - RDS file containing summary plots for best standard fit with applied heuristic
 - `<dataset>_<patient>_viber_report.{rds,pdf,png}`
   - report of VIBER deconvolution in RDS, PDF and PNG
+
+</details>
+
+### CONIPHER
+
+[CONIPHER](https://github.com/McGranahanLab/CONIPHER) clusters mutations with PyClone 0.13.1 and TRACERx-style CCF / copy-number noise correction, then reconstructs multi-region phylogenetic trees. Enable it with `--tools conipher`. It does not replace PyClone-VI or ctree.
+
+The joint `mCNAqc` object is first converted to CONIPHER's long-format mutation table. Ploidy is taken from the CNAqc object, allele-specific copy number from `karyotype`, and sex chromosomes are dropped.
+
+<details markdown="1">
+<summary>Output files for all samples</summary>
+
+**Output directory: `{outdir}/subclonal_deconvolution/conipher/clustering/<dataset>/<patient>/`**
+
+- `<dataset>_<patient>_conipher_input.tsv`
+  - Unclustered CONIPHER input table
+- `<patient>.SCoutput.CLEAN.tsv`
+  - Clean clustered table used for tree building
+- `<patient>.SCoutput.FULL.tsv`
+  - Full clustered table including dirty clusters
+- `<patient>.SCoutput.DIRTY.tsv`
+  - Mutations removed during cluster cleaning
+
+**Output directory: `{outdir}/subclonal_deconvolution/conipher/treebuilding/<dataset>/<patient>/`**
+
+- `<patient>.tree.RDS`
+  - CONIPHER tree object
+- `pytree_and_bar.pdf`
+  - Default reconstructed tree and cluster CCF barplot
+- `pytree_multipletrees.pdf`
+  - Alternative phylogenetic trees found by CONIPHER
 
 </details>
 

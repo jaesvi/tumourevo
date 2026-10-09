@@ -1,0 +1,64 @@
+name: "conipher_treebuilding"
+description: "CONIPHER phylogenetic tree reconstruction from a clustered mutation table."
+keywords:
+  - CONIPHER
+  - phylogenetics
+  - clone tree
+  - subclonal deconvolution
+tools:
+  - "conipher":
+      description: "CONIPHER mutation clustering and phylogenetic tree reconstruction."
+      homepage: "https://github.com/McGranahanLab/CONIPHER"
+      documentation: "https://github.com/McGranahanLab/CONIPHER"
+      doi: "10.1038/s41596-023-00913-9"
+      licence:
+        - "BSD-3-Clause"
+      identifier: ""
+input:
+  - - meta:
+        type: map
+        description: Groovy Map containing sample information
+    - cluster_tsv:
+        type: file
+        description: Clustered CONIPHER table with CLUSTER and CCF_PHYLO columns
+        pattern: "*.tsv"
+        ontologies: []
+output:
+  tree_rds:
+    - - meta:
+          type: map
+          description: Groovy Map containing sample information
+      - "trees/*.tree.RDS":
+          type: file
+          description: CONIPHER tree object
+          pattern: "*.tree.RDS"
+          ontologies: []
+  tree_pdf:
+    - - meta:
+          type: map
+          description: Groovy Map containing sample information
+      - "trees/pytree_and_bar.pdf":
+          type: file
+          description: Default reconstructed tree and cluster CCF barplot
+          pattern: "pytree_and_bar.pdf"
+          ontologies: []
+  trees_pdf:
+    - - meta:
+          type: map
+          description: Groovy Map containing sample information
+      - "trees/pytree_multipletrees.pdf":
+          type: file
+          description: Alternative phylogenetic trees found by CONIPHER
+          pattern: "pytree_multipletrees.pdf"
+          ontologies: []
+  versions:
+    - versions.yml:
+        type: file
+        description: File containing software versions
+        pattern: "versions.yml"
+        ontologies:
+          - edam: http://edamontology.org/format_3750
+authors:
+  - "@jaesvi"
+maintainers:
+  - "@jaesvi"

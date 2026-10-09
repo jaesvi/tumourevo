@@ -164,6 +164,7 @@ Running the pipeline in tumour-only mode:
    - [PyClone-VI](https://github.com/Roth-Lab/pyclone-vi)
    - [VIBER](https://caravagnalab.github.io/VIBER/index.html)
    - [ctree](https://caravagnalab.github.io/ctree/)
+   - [CONIPHER](https://github.com/McGranahanLab/CONIPHER) (opt-in; add `conipher` to `--tools`)
 
 5. **Signature deconvolution**
    - [SparseSignatures](https://github.com/danro9685/SparseSignatures)

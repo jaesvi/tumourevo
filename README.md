@@ -42,8 +42,8 @@ different strategies will be applied.
 - Variant Annotation (`VEP`)
 - Quality Control (`CNAqc`, `TINC`)
 - Driver Annotation
-- Subclonal Deconvolution (`PyClone`, `MOBSTER`, `VIBER`)
-- Clone Tree Inference (`ctree`)
+- Subclonal Deconvolution (`PyClone`, `MOBSTER`, `VIBER`, `CONIPHER`)
+- Clone Tree Inference (`ctree`, `CONIPHER`)
 - Signature Deconvolution (`SparseSignatures`, `SigProfiler`)
 
 ## Usage

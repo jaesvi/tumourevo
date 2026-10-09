@@ -18,6 +18,10 @@
 
   > Antonello, A., Bergamin, R., Calonaci, N. et al. Computational validation of clonal and subclonal copy number alterations from bulk tumor sequencing using CNAqc. Genome Biol 25, 38 (2024). <https://doi.org/10.1186/s13059-024-03170-5>
 
+- [CONIPHER](https://doi.org/10.1038/s41596-023-00913-9)
+
+  > Grigoriadis K, Huebner A, Bunkum A, et al. CONIPHER: a computational framework for scalable phylogenetic reconstruction with error correction. Nat Protoc. 2023. doi: 10.1038/s41596-023-00913-9.
+
 - [CTREE](https://www.nature.com/articles/s41592-018-0108-x)
 
   > Caravagna, G., Giarratano, Y., Ramazzotti, D. et al. Detecting repeated cancer evolution from multi-region tumor sequencing data. Nat Methods 15, 707–714 (2018). <https://doi.org/10.1038/s41592-018-0108-x>

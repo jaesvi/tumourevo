@@ -334,7 +334,7 @@
                 },
                 "conipher_prefix": {
                     "type": "string",
-                    "description": "Case prefix that must be contained in CASE_ID. Defaults to the patient identifier."
+                    "description": "Case prefix grepped against SAMPLE column names during tree building. Hyphens are converted to dots to match PyClone sample names. Defaults to the patient identifier."
                 },
                 "conipher_ccf_buffer": {
                     "type": "number",

@@ -30,6 +30,10 @@ opt = list(
 args_opt = parse_args("$task.ext.args")
 for (ao in names(args_opt)) opt[[ao]] = args_opt[[ao]]
 
+# SAMPLE names have '-' replaced with '.' for PyClone. CONIPHER greps this
+# prefix against SAMPLE_PhyloCCF columns, so the prefix must match that.
+opt[["prefix"]] = gsub("-", ".", opt[["prefix"]])
+
 library(CONIPHER)
 
 out_dir = "trees"

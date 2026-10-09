@@ -30,6 +30,17 @@ opt = list(
 args_opt = parse_args("$task.ext.args")
 for (ao in names(args_opt)) opt[[ao]] = args_opt[[ao]]
 
+# PyClone 0.13.1 uses @jit(cache=True). Numba then tries to write a cache next to
+# site-packages, which is read-only in Singularity/Apptainer. Prefer a work-dir
+# cache; disable JIT only if that import still fails.
+numba_dir = file.path(getwd(), "numba_cache")
+dir.create(numba_dir, showWarnings = FALSE, recursive = TRUE)
+Sys.setenv(NUMBA_CACHE_DIR = normalizePath(numba_dir))
+pyclone_import = system("python -c \"from pyclone.math_utils import log_beta_binomial_likelihood\"")
+if (!identical(as.integer(pyclone_import), 0L)) {
+    Sys.setenv(NUMBA_DISABLE_JIT = "1")
+}
+
 library(CONIPHER)
 
 out_dir = "clustering"

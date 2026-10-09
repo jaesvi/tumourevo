@@ -20,6 +20,9 @@ process CONIPHER_CLUSTERING {
     when:
     task.ext.when == null || task.ext.when
 
+    // PyClone 0.13.1 enables numba caching beside site-packages (read-only in Singularity).
+    beforeScript 'mkdir -p numba_cache; export NUMBA_CACHE_DIR="${PWD}/numba_cache"'
+
     script:
     template "main_script.R"
 

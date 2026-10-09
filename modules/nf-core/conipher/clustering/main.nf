@@ -7,6 +7,8 @@ process CONIPHER_CLUSTERING {
     container "${ workflow.containerEngine in ['singularity', 'apptainer'] && !task.ext.singularity_pull_docker_container ?
         'https://depot.galaxyproject.org/singularity/conipher:2.2.0--r40hdfd78af_0' :
         'quay.io/biocontainers/conipher:2.2.0--r40hdfd78af_0' }"
+    // PyClone 0.13.1 enables numba caching beside site-packages (read-only in Singularity).
+    beforeScript 'mkdir -p numba_cache; export NUMBA_CACHE_DIR="${PWD}/numba_cache"'
 
     input:
     tuple val(meta), path(input_tsv), val(tumour_samples)
@@ -19,9 +21,6 @@ process CONIPHER_CLUSTERING {
 
     when:
     task.ext.when == null || task.ext.when
-
-    // PyClone 0.13.1 enables numba caching beside site-packages (read-only in Singularity).
-    beforeScript 'mkdir -p numba_cache; export NUMBA_CACHE_DIR="${PWD}/numba_cache"'
 
     script:
     template "main_script.R"
